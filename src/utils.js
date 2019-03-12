@@ -27,7 +27,7 @@ export const sendSecretMail = (address, secret)=>{
     from:"vovo@vovo.com",
     to: address,
     subject:"Login secret for presmagram😱",
-    html: ` <h1>helo</h1> <br/> here's your login secret <br/>${secret}`
+    html: ` <h1>helo</h1> <br/> here's your login secret <br/><strong>${secret}</strong>`
   }
   return sendMail(email)
 }
