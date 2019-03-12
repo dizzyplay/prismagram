@@ -1,10 +1,7 @@
 import passport from "passport";
 import {Strategy, ExtractJwt} from "passport-jwt"
-import dotenv from "dotenv";
-import path from "path";
 import prisma from '../generated/prisma-client'
 
-dotenv.config({path:path.resolve(__dirname,".env")});
 const jwtOptions = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey: process.env.JWT_SECRET
