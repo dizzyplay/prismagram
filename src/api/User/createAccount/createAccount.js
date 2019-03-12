@@ -1,8 +1,8 @@
 export default {
   Mutation: {
-    createAccount: async (_, args, {prisma}) => {
+    createAccount: async (_, args, context) => {
       const {username, email, firstName = "", lastName = "", bio = ""} = args;
-      const user = await prisma.createUser({
+      const user = await context.prisma.createUser({
         username,
         email,
         firstName,
