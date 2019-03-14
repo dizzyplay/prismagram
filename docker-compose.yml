@@ -8,7 +8,6 @@ services:
     environment:
       PRISMA_CONFIG: |
         port: 4466
-        managementApiSecret: himantest
         databases:
           default:
             connector: postgres
