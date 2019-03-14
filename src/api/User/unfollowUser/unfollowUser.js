@@ -1,29 +1,28 @@
-import {isAuthenticated} from "../../../middlewares";
+import { isAuthenticated } from "../../../middlewares";
 
-export default{
-  Mutation:{
-    unfollowUser: async (_,args,{request, prisma})=>{
+export default {
+  Mutation: {
+    unfollowUser: async (_, args, { request, prisma }) => {
       isAuthenticated(request);
-      const {user} = request;
-      const {id} = args;
-      try{
+      const { user } = request;
+      const { id } = args;
+      try {
         await prisma.updateUser({
-          data:{
-            following:{
-              disconnect:{
+          data: {
+            following: {
+              disconnect: {
                 id
               }
             }
           },
-          where:{
-            id:user.id
+          where: {
+            id: user.id
           }
         });
         return true;
-      }
-      catch  {
-        return false
+      } catch {
+        return false;
       }
     }
   }
-}
+};

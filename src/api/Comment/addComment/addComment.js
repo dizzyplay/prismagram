@@ -1,26 +1,26 @@
-import {isAuthenticated} from "../../../middlewares";
+import { isAuthenticated } from "../../../middlewares";
 
 export default {
   Mutation: {
-    addComment: async (_, args, {request, prisma}) => {
+    addComment: async (_, args, { request, prisma }) => {
       isAuthenticated(request);
-      const {user} = request;
-      const {text, postId} = args;
+      const { user } = request;
+      const { text, postId } = args;
       console.log(text, postId, user);
       const comment = await prisma.createComment({
         text,
-        post:{
-          connect:{
-            id:postId
+        post: {
+          connect: {
+            id: postId
           }
         },
-        user:{
-          connect:{
-            id:user.id
+        user: {
+          connect: {
+            id: user.id
           }
         }
       });
-      return comment
+      return comment;
     }
   }
-}
+};

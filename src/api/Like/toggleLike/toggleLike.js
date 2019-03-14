@@ -1,11 +1,11 @@
-import {isAuthenticated} from "../../../middlewares";
+import { isAuthenticated } from "../../../middlewares";
 
 export default {
   Mutation: {
-    toggleLike: async (_, args, {request, prisma}) => {
+    toggleLike: async (_, args, { request, prisma }) => {
       isAuthenticated(request);
-      const {postId} = args;
-      const {user} = request;
+      const { postId } = args;
+      const { user } = request;
       const filterOptions = {
         AND: [
           {
@@ -14,35 +14,34 @@ export default {
             }
           },
           {
-            post:{
-              id:postId
+            post: {
+              id: postId
             }
           }
         ]
-      }
-      try{
+      };
+      try {
         const existingLike = await prisma.$exists.like(filterOptions);
-        if(existingLike){
+        if (existingLike) {
           await prisma.deleteManyLikes(filterOptions);
-        }else{
+        } else {
           await prisma.createLike({
-            user:{
-              connect:{
-                id:user.id
+            user: {
+              connect: {
+                id: user.id
               }
             },
-            post:{
-              connect:{
-                id:postId
+            post: {
+              connect: {
+                id: postId
               }
             }
-          })
+          });
         }
-        return true
-      }
-      catch {
-        return false
+        return true;
+      } catch {
+        return false;
       }
     }
   }
-}
+};
