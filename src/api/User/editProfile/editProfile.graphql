@@ -1,0 +1,7 @@
+type Mutation{
+    editProfile(
+    firstName:String
+    lastName:String
+    bio:String
+):User!
+}
