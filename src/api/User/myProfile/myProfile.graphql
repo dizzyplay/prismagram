@@ -1,0 +1,9 @@
+
+type Query{
+    myProfile:User!
+}
+
+#type UserProfile{
+#    user:User!
+#    posts:[Post!]!
+#}
