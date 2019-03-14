@@ -1,8 +1,6 @@
-import { isAuthenticated } from "../../../middlewares";
-
 export default {
   Mutation: {
-    unfollowUser: async (_, args, { request, prisma }) => {
+    unfollowUser: async (_, args, { request, prisma, isAuthenticated }) => {
       isAuthenticated(request);
       const { user } = request;
       const { id } = args;

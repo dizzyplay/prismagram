@@ -1,8 +1,6 @@
-import { isAuthenticated } from "../../../middlewares";
-
 export default {
   Mutation: {
-    toggleLike: async (_, args, { request, prisma }) => {
+    toggleLike: async (_, args, { request, prisma, isAuthenticated }) => {
       isAuthenticated(request);
       const { postId } = args;
       const { user } = request;
