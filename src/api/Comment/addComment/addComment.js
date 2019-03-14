@@ -7,7 +7,7 @@ export default {
       const {user} = request;
       const {text, postId} = args;
       console.log(text, postId, user);
-      const post = await prisma.createComment({
+      const comment = await prisma.createComment({
         text,
         post:{
           connect:{
@@ -20,7 +20,7 @@ export default {
           }
         }
       });
-      return post
+      return comment
     }
   }
 }
