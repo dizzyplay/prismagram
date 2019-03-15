@@ -13,8 +13,8 @@ type User {
     following:[User!]!
     rooms:[Room!]!
     loginSecret:String
-    amIFollowing:Boolean!
-    itsMe:Boolean!
+    isFollowing:Boolean!
+    isSelf:Boolean!
 }
 
 type Post{
