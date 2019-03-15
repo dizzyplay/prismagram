@@ -10,5 +10,10 @@ export default {
       // return prisma.user({ id: user.id }).$fragment(USER_FRAGMENT);
       return { user: profile, posts };
     }
+  },
+  User: {
+    fullName: parent => {
+      return parent.firstName + " " + parent.lastName;
+    }
   }
 };
