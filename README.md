@@ -15,3 +15,7 @@ Instagram clone
     - [ ] Upload a photo
     - [ ] Edit the photo (Delete)
     - [ ] See the feed
+    - See room
+    - See rooms
+    - Send private Message
+    - Receive Message(real time)
