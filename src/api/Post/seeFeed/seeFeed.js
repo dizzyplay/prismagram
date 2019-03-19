@@ -8,11 +8,10 @@ export default {
       const following_list = await prisma.user({ id: user.id }).following();
       const feed = await prisma
         .posts({
-          first: 3,
           orderBy: "createdAt_DESC",
           where: {
             user: {
-              id_in: following_list.map(user => user.id)
+              id_in: [...following_list.map(user => user.id), user.id]
             }
           }
         })
