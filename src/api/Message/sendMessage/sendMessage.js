@@ -11,28 +11,25 @@ export default {
       const room = await prisma
         .user({ id: user.id })
         .rooms({ where: { participants_some: { id: toUser.id } } });
+      let roomId;
       if (room.length === 1) {
-        return await prisma.createMessage({
-          room: { connect: { id: room[0].id } },
-          text: message,
-          to: { connect: { id: toUser.id } },
-          from: { connect: { id: user.id } }
-        });
+        roomId = room[0].id;
       } else if (room.length === 0) {
         const newRoom = await prisma.createRoom({
           participants: { connect: [{ id: user.id }, { id: toUser.id }] }
         });
-        return await prisma.createMessage({
-          room: { connect: { id: newRoom.id } },
-          text: message,
-          to: { connect: { id: toUser.id } },
-          from: { connect: { id: user.id } }
-        });
+        roomId = newRoom.id;
       } else {
         throw Error(
           "Chat system got an error. Room value is not correct. check room length"
         );
       }
+      return await prisma.createMessage({
+        room: { connect: { id: roomId } },
+        text: message,
+        to: { connect: { id: toUser.id } },
+        from: { connect: { id: user.id } }
+      });
     }
   }
 };
