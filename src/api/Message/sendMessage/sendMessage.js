@@ -3,7 +3,7 @@ export default {
     sendMessage: async (_, args, { request, prisma, isAuthenticated }) => {
       isAuthenticated(request);
       const { user } = request;
-      const { toUserId, text } = args;
+      const { toUserId, message } = args;
       const toUser = await prisma.user({ id: toUserId });
       if (user.id === toUser.id) {
         throw Error("You can't send a message yourself.");
@@ -14,7 +14,7 @@ export default {
       if (room.length === 1) {
         return await prisma.createMessage({
           room: { connect: { id: room[0].id } },
-          text,
+          text: message,
           to: { connect: { id: toUser.id } },
           from: { connect: { id: user.id } }
         });
@@ -24,7 +24,7 @@ export default {
         });
         return await prisma.createMessage({
           room: { connect: { id: newRoom.id } },
-          text,
+          text: message,
           to: { connect: { id: toUser.id } },
           from: { connect: { id: user.id } }
         });
