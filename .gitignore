@@ -63,3 +63,4 @@ prisma.yml
 .next
 .idea/
 generated
+*.zip
