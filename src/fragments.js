@@ -51,17 +51,3 @@ export const ROOM_FRAGMENT = `
     text
     }
  }`;
-
-export const MESSAGE_FRAGMENT = `
-  fragment MessageParts on Message{
-    id
-    text
-    to{
-      id
-      username
-      }
-     from{
-      id
-      username
-    }
-  }`;

@@ -16,8 +16,7 @@ export default {
               }
             ]
           })
-          .node()
-          .$fragment(MESSAGE_FRAGMENT);
+          .node();
       },
       resolve: payload => payload
     }
