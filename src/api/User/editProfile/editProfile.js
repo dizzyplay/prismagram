@@ -3,13 +3,16 @@ export default {
     editProfile: (_, args, { request, prisma, isAuthenticated }) => {
       isAuthenticated(request);
       const { user } = request;
-      const { firstName, lastName, bio } = args;
+      const { firstName, lastName, bio, avatar, email, username } = args;
       try {
         return prisma.updateUser({
           data: {
             firstName,
             lastName,
-            bio
+            bio,
+            email,
+            username,
+            avatar
           },
           where: {
             id: user.id

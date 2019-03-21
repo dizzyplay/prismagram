@@ -3,5 +3,8 @@ type Mutation{
     firstName:String
     lastName:String
     bio:String
+    email:String
+    username:String
+    avatar:String
 ):User!
 }
