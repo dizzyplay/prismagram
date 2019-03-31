@@ -42,7 +42,6 @@ typings/
 # Optional npm cache directory
 .npm
 
-prisma.yml
 
 # Optional eslint cache
 .eslintcache
