@@ -13,6 +13,8 @@ type User {
     following:[User!]! @relation(name:"FollowRelation")
     rooms:[Room!]!
     loginSecret:String
+    createdAt:DateTime!
+    updatedAt:DateTime!
 }
 
 type Post{
@@ -23,28 +25,38 @@ type Post{
     likes:[Like!]! @relation(name:"LikeOfPost", onDelete:CASCADE)
     files:[File!]! @relation(name:"FilesOfPost", onDelete:CASCADE)
     comments:[Comment!]! @relation(name:"CommentsOfPost", onDelete:CASCADE)
+    createdAt:DateTime!
+    updatedAt:DateTime!
 }
 type Like{
     id: ID! @unique
     user:User! @relation(name:"LikesOfUser")
     post:Post! @relation(name:"LikeOfPost")
+    createdAt:DateTime!
+    updatedAt:DateTime!
 }
 type Comment{
     id: ID! @unique
     text:String!
     user:User! @relation(name:"CommentsOfUser")
     post:Post! @relation(name:"CommentsOfPost")
+    createdAt:DateTime!
+    updatedAt:DateTime!
 }
 type File{
     id: ID! @unique
     url:String!
     post:Post @relation(name:"FilesOfPost")
+    createdAt:DateTime!
+    updatedAt:DateTime!
 }
 
 type Room{
     id: ID! @unique
     participants:[User!]!
     messages: [Message!]! @relation(name:"MessagesOfRoom", onDelete:CASCADE)
+    createdAt:DateTime!
+    updatedAt:DateTime!
 }
 type Message{
     id: ID! @unique
@@ -52,4 +64,6 @@ type Message{
     from:User! @relation(name:"From")
     to:User! @relation(name:"To")
     room:Room! @relation(name:"MessagesOfRoom")
+    createdAt:DateTime!
+    updatedAt:DateTime!
 }

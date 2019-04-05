@@ -11,6 +11,7 @@ export const FULL_POST_FRAGMENT = `
        id
       location
       caption
+    createdAt
       files{
         id
         url
@@ -26,6 +27,7 @@ export const FULL_POST_FRAGMENT = `
      user{
         id
         username
+       avatar
       }
     }
 `;
