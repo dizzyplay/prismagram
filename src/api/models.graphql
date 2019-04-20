@@ -22,7 +22,7 @@ type User {
 
 type Post{
     id: ID!
-    files:[File!]!
+    files:[File!]
     location: String
     caption: String!
     user:User!
