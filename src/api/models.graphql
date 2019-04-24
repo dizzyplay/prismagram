@@ -18,6 +18,7 @@ type User {
     isSelf:Boolean!
     createdAt:String
     updatedAt:String
+    postsCount:Int!
 }
 
 type Post{

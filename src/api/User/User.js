@@ -3,13 +3,19 @@ export default {
     fullName: parent => {
       return `${parent.firstName} ${parent.lastName}`;
     },
-    isFollowing: (parent, __, { request, prisma }) => {
-      const { user } = request;
-      const { id: parentId } = parent;
+    postsCount: (parent, __, {prisma}) => {
+      return prisma
+        .postsConnection({where: {user: {id: parent.id}}})
+        .aggregate()
+        .count();
+    },
+    isFollowing: (parent, __, {request, prisma}) => {
+      const {user} = request;
+      const {id: parentId} = parent;
       return prisma.$exists.user({
-        AND: [{ id: user.id }, { following_some: { id: parentId } }]
+        AND: [{id: user.id}, {following_some: {id: parentId}}],
       });
     },
-    isSelf: async (parent, __, { request }) => parent.id === request.user.id
-  }
+    isSelf: async (parent, __, {request}) => parent.id === request.user.id,
+  },
 };
