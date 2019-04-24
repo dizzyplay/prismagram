@@ -3,6 +3,18 @@ export default {
     fullName: parent => {
       return `${parent.firstName} ${parent.lastName}`;
     },
+    followingCount: ({id}, __, {prisma}) => {
+      return prisma
+        .usersConnection({where: {following_some: {id}}})
+        .aggregate()
+        .count();
+    },
+    followersCount: ({id}, __, {prisma}) => {
+      return prisma
+        .usersConnection({where: {followers_some: {id}}})
+        .aggregate()
+        .count();
+    },
     postsCount: (parent, __, {prisma}) => {
       return prisma
         .postsConnection({where: {user: {id: parent.id}}})

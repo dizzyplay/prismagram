@@ -19,6 +19,8 @@ type User {
     createdAt:String
     updatedAt:String
     postsCount:Int!
+    followingCount:Int!
+    followersCount:Int!
 }
 
 type Post{
